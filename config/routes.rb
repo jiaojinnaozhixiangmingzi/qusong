@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :couriers do 
+    member do 
+      post :login
+    end
+  end
+
   root to: 'waybills#index'
 
   resources :waybills do
