@@ -1,0 +1,55 @@
+<ion-view view-title="注册">
+    <ion-content>
+        <div class="list list-inset" style="margin-top: 3%;text-align: center;" ng-init="hide=false">
+            <img src="../../qusong/img/guapi.png" style="height: 64px">
+            <h2 class="calm" ng-show="!hide">
+                最懂你的洗衣平台
+            </h2>
+            <label class="item item-input" style="margin-top: 10%;text-align: center;">
+                <input type="text" ng-model='username' placeholder="姓名">
+            </label>
+            <label class="item item-input">
+                <input type="text" ng-model='password' placeholder="手机号">
+            </label>
+            <label class="item item-input">
+                <input type="text" ng-model='password' placeholder="工作地址">
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    取送范围
+                </div>
+                <select>
+                    <option>1公里</option>
+                    <option selected>2公里</option>
+                    <option>3公里</option>
+                    <option>4公里</option>
+                    <option>5公里</option>
+                </select>
+            </label>
+            <label class="item item-input">
+                <input type="file" ng-model='password' value="健康证明">
+            </label>
+            <!--     暂用文件代替，后期替换为camera       -->
+            <div class="item item-input-inset">
+                <label class="item item-input" style="padding-top: 0px;padding-bottom: 0px;">
+                    <input type="text" placeholder="输入验证码">
+                </label>
+                <input type="button" style="float: right;margin-left: auto;" class="button button-small" value="发送验证码" />
+            </div>
+            <div>
+                <button class="button button-clear button-calm" style="float: left;">
+
+                </button>
+                <button class="button button-clear button-calm" style="float: right;" ng-click="jump('#/login')">
+                    已有账号，去登录
+                </button>
+            </div>
+            <h5 class="" style='margin-top: 20%;color:red;visibility:hidden;' ng-show="!hide">
+                您输入的用户名格式不合法，请重新输入
+            </h5>
+            <input type="button" style='margin-top: 5%;width: 20%;' class=" button button-outline button-calm" value="提交">
+        </div>
+
+    </ion-content>
+</ion-view>
