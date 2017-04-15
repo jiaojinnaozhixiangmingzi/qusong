@@ -29,10 +29,10 @@ class CouriersController < ApplicationController
     respond_to do |format|
       if @courier.save
         format.html { redirect_to @courier, notice: 'Courier was successfully created.' }
-        format.json { render :show, status: :created, location: @courier }
+        format.json { render :json => {:data => "succ"}.to_json }
       else
         format.html { render :new }
-        format.json { render json: @courier.errors, status: :unprocessable_entity }
+        format.json { render :json => {:data => "failed"}.to_json }
       end
     end
   end
@@ -68,7 +68,12 @@ class CouriersController < ApplicationController
       if @courier.empty?
         format.json { render :json => {:data => "Login failed"}.to_json}
       else
-        format.json { render :json => {:data => "Login succ!"}.to_json}
+        first = @courier[0]
+        if first.status == 1
+          format.json { render :json => {:data => "Login succ"}.to_json}
+        else
+          format.json { render :json => {:data => "Need activate"}.to_json}
+        end
       end
     end
   end
