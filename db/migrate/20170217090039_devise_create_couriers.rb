@@ -36,6 +36,9 @@ class DeviseCreateCouriers < ActiveRecord::Migration[5.0]
 
 
       t.timestamps null: false
+      t.string :address
+      t.string :range
+
     end
 
     add_index :couriers, :mobile,                unique: true

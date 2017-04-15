@@ -90,7 +90,6 @@ class CouriersController < ApplicationController
     end
 
     def courier_create_params
-      params.require(:courier).permit(:mobile, :encrypted_password, :email, :name)
+      params.require(:courier).permit(:mobile, :encrypted_password, :address, :range, :email, :name)
     end
-
 end

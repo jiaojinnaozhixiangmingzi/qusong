@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20170223063345) do
     t.boolean  "status",                 default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string "address"
+    t.string "range"
     t.index ["mobile"], name: "index_couriers_on_mobile", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_couriers_on_reset_password_token", unique: true, using: :btree
   end

@@ -4062,3 +4062,88 @@ Processing by CouriersController#login as JSON
 Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.6ms)
 
 
+Started POST "/couriers.json" for 127.0.0.1 at 2017-04-15 13:21:38 +0800
+Processing by CouriersController#create as JSON
+  Parameters: {"courier"=>{"mobile"=>"123101050@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "email"=>"", "name"=>"user5"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `couriers` (`mobile`, `encrypted_password`, `name`, `created_at`, `updated_at`) VALUES ('123101050@bjtu.edu.cn', '111111', 'user5', '2017-04-15 05:21:38', '2017-04-15 05:21:38')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.1ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-04-15 13:22:05 +0800
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"12301050@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '12301050@bjtu.edu.cn' and encrypted_password = '111111')[0m
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-04-15 13:22:15 +0800
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"123101050@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '123101050@bjtu.edu.cn' and encrypted_password = '111111')[0m
+  [1m[36mCourier Load (0.2ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '123101050@bjtu.edu.cn' and encrypted_password = '111111')[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-04-15 13:22:25 +0800
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"16126218@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '16126218@bjtu.edu.cn' and encrypted_password = '111111')[0m
+  [1m[36mCourier Load (0.2ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '16126218@bjtu.edu.cn' and encrypted_password = '111111')[0m
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-04-15 13:22:30 +0800
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"16126207@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '16126207@bjtu.edu.cn' and encrypted_password = '111111')[0m
+  [1m[36mCourier Load (0.2ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '16126207@bjtu.edu.cn' and encrypted_password = '111111')[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-04-15 13:31:26 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"16126207@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '16126207@bjtu.edu.cn' and encrypted_password = '111111')[0m
+  [1m[36mCourier Load (0.3ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '16126207@bjtu.edu.cn' and encrypted_password = '111111')[0m
+Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/couriers.json" for 127.0.0.1 at 2017-04-15 13:31:37 +0800
+Processing by CouriersController#create as JSON
+  Parameters: {"courier"=>{"mobile"=>"123", "encrypted_password"=>"[FILTERED]", "email"=>"", "name"=>"user5"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO `couriers` (`mobile`, `encrypted_password`, `name`, `created_at`, `updated_at`) VALUES ('123', '111111', 'user5', '2017-04-15 05:31:37', '2017-04-15 05:31:37')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-04-15 13:33:29 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"16126207@bjtu.edu.cn", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '16126207@bjtu.edu.cn' and encrypted_password = '111111')[0m
+  [1m[36mCourier Load (0.2ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '16126207@bjtu.edu.cn' and encrypted_password = '111111')[0m
+Completed 200 OK in 23ms (Views: 0.1ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/couriers.json" for 127.0.0.1 at 2017-04-15 13:33:36 +0800
+Processing by CouriersController#create as JSON
+  Parameters: {"courier"=>{"mobile"=>"222", "encrypted_password"=>"[FILTERED]", "email"=>"", "name"=>"user5"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO `couriers` (`mobile`, `encrypted_password`, `name`, `created_at`, `updated_at`) VALUES ('222', '111111', 'user5', '2017-04-15 05:33:36', '2017-04-15 05:33:36')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/couriers.json" for 127.0.0.1 at 2017-04-15 13:34:52 +0800
+Processing by CouriersController#create as JSON
+  Parameters: {"courier"=>{"mobile"=>"333", "encrypted_password"=>"[FILTERED]", "email"=>"", "name"=>"", "address"=>"jiaodadonglu", "range"=>"3"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `couriers` (`mobile`, `encrypted_password`, `name`, `created_at`, `updated_at`, `address`, `range`) VALUES ('333', '111111', '', '2017-04-15 05:34:52', '2017-04-15 05:34:52', 'jiaodadonglu', '3')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 19ms (Views: 0.1ms | ActiveRecord: 2.3ms)
+
+
