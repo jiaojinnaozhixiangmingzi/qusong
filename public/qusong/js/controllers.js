@@ -7,24 +7,34 @@ angular.module('starter.controllers', [])
 })
 
 //用户登录控制
-.controller('LoginCtrl', function ($scope, $http) {
-    $scope.username = 'wangaxing';
+.controller('LoginCtrl', function ($scope, $http, Login, httpServicePost) {
+    $scope.info = {
+        mobile: "",
+        encrypted_password: ""
+    };
     $scope.jump = function (url) {
         window.location = url;
     };
+    $scope.showerror = false;
     $scope.submit = function () {
-        alert("zheshi");
-        //        alert($scope.username);
-        $http({
-            method: 'GET',
-            url: 'http://127.0.0.1:3001/workers.json'
-        }).then(function successCallback(response) {
-            //			$scope.names = response.data.sites;
-            var ret = response;
-        }, function errorCallback(response) {
-            // 请求失败执行代码
-            alert("请求失败了");
+//        $rootScope.userid = '186';
+        var info = $scope.info;
+        var checkRet = Login.checkFiled(info);
+        if (checkRet != null) {
+            var tipsDom = document.getElementById("showerror");
+            tipsDom.innerHTML = checkRet;
+            $scope.showerror = true;
+            return;
+        }
+        var serviceRet = httpServicePost.posthttp(info, '/couriers/8/login.json').then(function (resp) {
+            if (resp.data.data == "Login succ!") {
+                alert("登录成功");
+//                $rootScope.userid = resp.data.data[0].id;
+                window.location = "#/tab/dash";
+            }
+            //响应成功时调用，resp是一个响应对象
         });
+
     }
 
     $scope.settings = {
@@ -32,7 +42,59 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('SigninCtrl', function ($scope) {
+.controller('SigninCtrl', function ($scope, Signin, httpServicePost) {
+    $scope.info = {
+        mobile: "",
+        encrypted_password: "",
+        reencrypted_password: "",
+        password_token: ""
+    };
+
+    $scope.showerror = false;
+    $scope.sendMa = function () {
+
+        var info = $scope.info;
+        var userinfo = {
+            "mobile": info.mobile,
+        };
+        var checkRet = Signin.checkFiled(info);
+        if (userinfo.mobile == null) { //==null验证不通过
+            var tipsDom = document.getElementById("showerror");
+            tipsDom.innerHTML = "您还未输入邮箱账号！";
+            $scope.showerror = true;
+            return;
+        }
+        var serviceRet = httpServicePost.posthttp(userinfo, '/users/8/registerEmail.json').then(function (resp) {
+            if (resp.data.data == "Send succ") {
+                alert("验证码发送成功，请在有效期内激活，否则验证码失效！");
+                //                window.location = "#/login";
+            } else {
+                alert("您输入的邮箱账号已被使用，请使用其他账号注册！");
+            }
+        });
+    }
+    $scope.submit = function () {
+        var info = $scope.info;
+        var userinfo = {
+            "user[mobile]": info.mobile,
+            "user[encrypted_password]": info.encrypted_password,
+        };
+        var checkRet = Signin.checkFiled(info);
+        if (checkRet != null) { //==null验证通过
+            var tipsDom = document.getElementById("showerror");
+            tipsDom.innerHTML = checkRet;
+            $scope.showerror = true;
+            return;
+        }
+        var serviceRet = httpServicePost.posthttp(userinfo, '/users.json').then(function (resp) {
+            if (resp.data.data == "succ") {
+                alert("注册成功，为您跳转至登录页面！");
+                window.location = "#/login";
+            }
+        });
+
+
+    }
     $scope.jump = function (url) {
         window.location = url;
     };
@@ -48,17 +110,43 @@ angular.module('starter.controllers', [])
     //  };
 })
 
-.controller('ResetPasswdCtrl', function ($scope, $http, $stateParams) {
+.controller('ResetPasswdCtrl', function ($scope, $http, $stateParams, ResetPassword, httpServicePost) {
+    $scope.info = {
+        oldencrypted_password: "",
+        newencrypted_password: "",
+        renewencrypted_password: ""
+    };
+
+    $scope.showerror = false;
+    
+    $scope.submit = function () {
+//        var id = $rootScope.userid;
+        var info = $scope.info;
+        var userinfo = {
+            "old_encrypted_password": info.oldencrypted_password,
+            "new_encrypted_password": info.newencrypted_password,
+        };
+        var checkRet = ResetPassword.checkFiled(info);
+        if (checkRet != null) { //==null验证通过
+            var tipsDom = document.getElementById("showerror");
+            tipsDom.innerHTML = checkRet;
+            $scope.showerror = true;
+            return;
+        }
+        var serviceRet = httpServicePost.posthttp(userinfo, '/couriers/8/reset.json').then(function (resp) {
+            if (resp.data.data == "Retset succ") {
+                alert("修改密码成功！");
+                window.location = "#/tab/account";
+            }
+        });
+
+
+    }
     $scope.jump = function (url) {
         window.location = url;
     };
-    var url = $stateParams.from;
-    //    alert(url);
-    //    $scope.username = 'wangaxing';
-    //  $scope.settings = {
-    //    enableFriends: true
-    //  };
 })
+
 
 
 
