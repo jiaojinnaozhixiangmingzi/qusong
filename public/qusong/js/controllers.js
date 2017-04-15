@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
     };
     $scope.showerror = false;
     $scope.submit = function () {
-//        $rootScope.userid = '186';
+        //        $rootScope.userid = '186';
         var info = $scope.info;
         var checkRet = Login.checkFiled(info);
         if (checkRet != null) {
@@ -29,8 +29,13 @@ angular.module('starter.controllers', [])
         var serviceRet = httpServicePost.posthttp(info, '/couriers/8/login.json').then(function (resp) {
             if (resp.data.data == "Login succ!") {
                 alert("登录成功");
-//                $rootScope.userid = resp.data.data[0].id;
                 window.location = "#/tab/dash";
+            } else if (resp.data.data == "Login failed") {
+                alert("登录失败");
+                window.location = "#/login";
+            } else if (resp.data.data == "Need activate") {
+                alert("您的账号还未激活，请耐心等待激活");
+                window.location = "#/login";
             }
             //响应成功时调用，resp是一个响应对象
         });
@@ -44,10 +49,12 @@ angular.module('starter.controllers', [])
 
 .controller('SigninCtrl', function ($scope, Signin, httpServicePost) {
     $scope.info = {
+        name: "",
         mobile: "",
         encrypted_password: "",
         reencrypted_password: "",
-        password_token: ""
+        addr: "",
+        range: ""
     };
 
     $scope.showerror = false;
@@ -76,8 +83,12 @@ angular.module('starter.controllers', [])
     $scope.submit = function () {
         var info = $scope.info;
         var userinfo = {
-            "user[mobile]": info.mobile,
-            "user[encrypted_password]": info.encrypted_password,
+            "courier[mobile]": info.mobile,
+            "courier[encrypted_password]": info.encrypted_password,
+            "courier[name]": info.name,
+            "courier[range]": info.range,
+            "courier[email]": "",
+            "courier[address]": info.addr,
         };
         var checkRet = Signin.checkFiled(info);
         if (checkRet != null) { //==null验证通过
@@ -86,7 +97,7 @@ angular.module('starter.controllers', [])
             $scope.showerror = true;
             return;
         }
-        var serviceRet = httpServicePost.posthttp(userinfo, '/users.json').then(function (resp) {
+        var serviceRet = httpServicePost.posthttp(userinfo, '/couriers.json').then(function (resp) {
             if (resp.data.data == "succ") {
                 alert("注册成功，为您跳转至登录页面！");
                 window.location = "#/login";
@@ -118,9 +129,9 @@ angular.module('starter.controllers', [])
     };
 
     $scope.showerror = false;
-    
+
     $scope.submit = function () {
-//        var id = $rootScope.userid;
+        //        var id = $rootScope.userid;
         var info = $scope.info;
         var userinfo = {
             "old_encrypted_password": info.oldencrypted_password,

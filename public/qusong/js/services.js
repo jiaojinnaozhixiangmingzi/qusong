@@ -98,6 +98,12 @@ angular.module('starter.services', [])
                 if (userInfo.reencrypted_password != userInfo.encrypted_password) {
                     return "您输入的两次密码不一致，请重新输入！";
                 }
+                if (userInfo.range == null || userInfo.range == undefined || userInfo.range == "") {
+                    return "您还未选择取送范围，请重新输入！";
+                }
+                if (userInfo.range == null || userInfo.range == undefined || userInfo.range == "") {
+                    return "您还未输入工作地点，请重新输入！";
+                }
                 return;
                 //      chats.splice(chats.indexOf(chat), 1);
             },
