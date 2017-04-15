@@ -69,9 +69,9 @@ class CouriersController < ApplicationController
         format.json { render :json => {:data => "Login failed"}.to_json}
       else
         first = @courier[0]
-        if first.status == 1
+        if first.status
           format.json { render :json => {:data => "Login succ"}.to_json}
-        else
+          else
           format.json { render :json => {:data => "Need activate"}.to_json}
         end
       end
@@ -90,7 +90,7 @@ class CouriersController < ApplicationController
     end
 
     def courier_create_params
-      params.require(:courier).permit(:mobile, :encrypted_password, :email, :name, :status)
+      params.require(:courier).permit(:mobile, :encrypted_password, :email, :name)
     end
 
 end
