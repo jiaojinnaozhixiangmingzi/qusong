@@ -70,7 +70,7 @@ class CouriersController < ApplicationController
       else
         first = @courier[0]
         if first.status
-          format.json { render :json => {:data => "Login succ"}.to_json}
+          format.json { render :json => {:data => first}.to_json}
           else
           format.json { render :json => {:data => "Need activate"}.to_json}
         end

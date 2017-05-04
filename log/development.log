@@ -4147,3 +4147,77 @@ Processing by CouriersController#create as JSON
 Completed 200 OK in 19ms (Views: 0.1ms | ActiveRecord: 2.3ms)
 
 
+Started POST "/couriers.json" for 127.0.0.1 at 2017-04-15 13:44:10 +0800
+Processing by CouriersController#create as JSON
+  Parameters: {"courier"=>{"mobile"=>"444", "encrypted_password"=>"[FILTERED]", "email"=>"", "name"=>"jhguig", "address"=>"jiaodadonglu", "range"=>"3"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO `couriers` (`mobile`, `encrypted_password`, `name`, `created_at`, `updated_at`, `address`, `range`) VALUES ('444', '111111', 'jhguig', '2017-04-15 05:44:10', '2017-04-15 05:44:10', 'jiaodadonglu', '3')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/couriers.json" for 127.0.0.1 at 2017-04-15 13:44:33 +0800
+Processing by CouriersController#create as JSON
+  Parameters: {"courier"=>{"mobile"=>"555", "encrypted_password"=>"[FILTERED]", "email"=>"", "name"=>"jhguig", "address"=>"jiaodadonglu", "range"=>"3公里"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `couriers` (`mobile`, `encrypted_password`, `name`, `created_at`, `updated_at`, `address`, `range`) VALUES ('555', '111111', 'jhguig', '2017-04-15 05:44:33', '2017-04-15 05:44:33', 'jiaodadonglu', '3公里')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/courier/8/login.json" for 127.0.0.1 at 2017-05-04 21:02:59 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  
+ActionController::RoutingError (No route matches [POST] "/courier/8/login.json"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `call'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered collection of /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [35 times] (14.1ms)
+  Rendered /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (7.5ms)
+  Rendering /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (18.4ms)
+  Rendered /Users/Kafukaaa/.rvm/gems/ruby-2.2.2/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (141.2ms)
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-05-04 21:03:21 +0800
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"007", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '007' and encrypted_password = '1111111')[0m
+  [1m[36mCourier Load (0.3ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '007' and encrypted_password = '1111111')[0m
+Completed 200 OK in 28ms (Views: 0.5ms | ActiveRecord: 4.7ms)
+
+
+Started POST "/couriers/8/login.json" for 127.0.0.1 at 2017-05-04 21:03:44 +0800
+Processing by CouriersController#login as JSON
+  Parameters: {"mobile"=>"007", "encrypted_password"=>"[FILTERED]", "id"=>"8"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `couriers` WHERE (mobile = '007' and encrypted_password = '1111111')[0m
+  [1m[36mCourier Load (0.5ms)[0m  [1m[34mSELECT `couriers`.* FROM `couriers` WHERE (mobile = '007' and encrypted_password = '1111111')[0m
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
