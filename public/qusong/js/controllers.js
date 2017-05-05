@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
 })
 
 //用户登录控制
-.controller('LoginCtrl', function ($scope, $http, Login, httpServicePost) {
+.controller('LoginCtrl', function ($scope, $http, Login, httpServicePost, $rootScope) {
     $scope.info = {
         mobile: "",
         encrypted_password: ""
@@ -27,15 +27,16 @@ angular.module('starter.controllers', [])
             return;
         }
         var serviceRet = httpServicePost.posthttp(info, '/couriers/8/login.json').then(function (resp) {
-            if (resp.data.data == "Login succ!") {
-                alert("登录成功");
-                window.location = "#/tab/dash";
-            } else if (resp.data.data == "Login failed") {
+            if (resp.data.data == "Login failed") {
                 alert("登录失败");
                 window.location = "#/login";
             } else if (resp.data.data == "Need activate") {
                 alert("您的账号还未激活，请耐心等待激活");
                 window.location = "#/login";
+            } else {
+                alert("登录成功");
+                window.location = "#/tab/dash";
+                $rootScope.courierId = resp.data.data.id;
             }
             //响应成功时调用，resp是一个响应对象
         });
@@ -181,7 +182,7 @@ angular.module('starter.controllers', [])
         //  };
     })
 
-.controller('ChatsCtrl', function ($scope, Chats, $interval) {
+.controller('ChatsCtrl', function ($scope, Chats, $interval, $rootScope, httpServicePost) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -189,19 +190,53 @@ angular.module('starter.controllers', [])
     //
     //$scope.$on('$ionicView.enter', function(e) {
     //});
-
-    $scope.chatss = Chats.all();
+    $scope.chatss = [];
     $scope.remove = function (chat) {
         Chats.remove(chat);
     };
+    //    var tmp = Chats.chatss;
     var timer = $interval(function () {
-        alert("done");
-    }, 5000);
-    
+        //        alert("done");
+        var info = {
+            "courierId": $rootScope.courierId,
+        };
+        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/orders/sendOrder.json').then(function (resp) {
+            var tmpinfo = resp;
+            Chats.chats = resp.data.data;
+            $scope.chatss = Chats.chats;
+            window.location = "#/tab/chatse";
+            //            $scope.chatss = resp.data.data;
+
+            //响应成功时调用，resp是一个响应对象
+        });
+    }, 10000);
+
 })
 
-.controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
+.controller('ChatDetailCtrl', function ($scope, $stateParams, Chats, httpServicePost, $rootScope) {
+    $scope.chat = {
+        id: "",
+        total_price: "",
+        address_id: "",
+        updated_at: "",
+    };
+    $scope.chat = [];
+    for (var i = 0; i < Chats.chats.length; i++) {
+        if (Chats.chats[i].id === parseInt($stateParams.chatId)) {
+            $scope.chat =Chats.chats[i];
+        }
+    }
+    $scope.qiangdan = function () {
+        var info = {
+            "courierId": $rootScope.courierId,
+            "orderId": $scope.chat.id
+        };
+        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/waybills/fightWaybill.json').then(function (resp) {
+            var tmpinfo = resp;
+            
+        });
+        alert("抢单成功");
+    }
 })
 
 .controller('AccountCtrl', function ($scope) {
