@@ -204,10 +204,9 @@ angular.module('starter.controllers', [])
             var tmpinfo = resp;
             Chats.chats = resp.data.data;
             $scope.chatss = Chats.chats;
-            window.location = "#/tab/chatse";
+//            window.location = "#/tab/chatse";
             //            $scope.chatss = resp.data.data;
 
-            //响应成功时调用，resp是一个响应对象
         });
     }, 10000);
 
@@ -245,5 +244,20 @@ angular.module('starter.controllers', [])
     //    };
     $scope.settings = {
         enableFriends: true
+    };
+    $scope.jump = function (url) {
+        window.location = url;
+    };
+})
+    
+.controller('OrderMgt', function ($scope) {
+    //    $scope.jump = function(url) {
+    //            window.location = url;
+    //    };
+    $scope.settings = {
+        enableFriends: true
+    };
+    $scope.jump = function (url) {
+        window.location = url;
     };
 });

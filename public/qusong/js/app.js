@@ -91,7 +91,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         templateUrl: 'templates/showProduct.html',
         controller: 'ShowProductCtrl'
     })
+    
+    .state('orderMgt', {
+        url: '/orderMgt',
+        templateUrl: 'templates/orderMgt.html',
+        controller: 'OrderMgt'
+    })
 
+    
     .state('tab.chatsssss', {
             url: '/chatse',
             
