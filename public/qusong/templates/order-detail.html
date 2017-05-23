@@ -1,0 +1,18 @@
+<ion-view view-title="订单详情" hide-nav-bar="true">
+    <div class="bar bar-header">
+        <button class="button button-small button-icon icon ion-chevron-left" ng-click="$ionicGoBack()"></button>
+        <div class="h1 title">订单详情</div>
+    </div>
+    <ion-content class="padding">
+        <div class="item" style="height: 154px;background: #fafafa;color: black;text-align: -webkit-left;min-height: 124px;margin-top: 15%;">
+            订单id：{{order.id}}
+            <p style="margin-top: 15px;margin-bottom: 15px;white-space: normal;height: 20px;text-align:-webkit-auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单总价格：{{order.total_price}}</p>
+            <p style="margin-top: 15px;margin-bottom: 15px;white-space: normal;height: 20px;text-align:-webkit-auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单地址：{{order.address_id}}</p>
+            <p style="margin-top: 15px;margin-bottom: 15px;white-space: normal;height: 60px;text-align:-webkit-auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下单时间：{{order.updated_at}}</p>
+        </div>
+        
+        <input type="button" style='margin-top: 30%;width: 30%;margin-left: 35%;' class=" button button-outline button-calm" ng-click="songda()" value="已送达">
+
+
+    </ion-content>
+</ion-view>

@@ -97,7 +97,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         templateUrl: 'templates/orderMgt.html',
         controller: 'OrderMgt'
     })
+    .state('order-detail', {
+            url: '/order-detail',
+            templateUrl: 'templates/order-detail.html',
+            controller: 'OrderDetailCtrl',
+            cache: false
 
+    })
     
     .state('tab.chatsssss', {
             url: '/chatse',

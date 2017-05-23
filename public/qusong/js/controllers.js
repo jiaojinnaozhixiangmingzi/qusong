@@ -204,7 +204,7 @@ angular.module('starter.controllers', [])
             var tmpinfo = resp;
             Chats.chats = resp.data.data;
             $scope.chatss = Chats.chats;
-//            window.location = "#/tab/chatse";
+            //            window.location = "#/tab/chatse";
             //            $scope.chatss = resp.data.data;
 
         });
@@ -222,7 +222,7 @@ angular.module('starter.controllers', [])
     $scope.chat = [];
     for (var i = 0; i < Chats.chats.length; i++) {
         if (Chats.chats[i].id === parseInt($stateParams.chatId)) {
-            $scope.chat =Chats.chats[i];
+            $scope.chat = Chats.chats[i];
         }
     }
     $scope.qiangdan = function () {
@@ -232,7 +232,43 @@ angular.module('starter.controllers', [])
         };
         var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/waybills/fightWaybill.json').then(function (resp) {
             var tmpinfo = resp;
-            
+
+        });
+        alert("抢单成功");
+    }
+})
+
+.controller('OrderDetailCtrl', function ($scope, $stateParams, Orders, httpServicePost, $rootScope) {
+    $scope.order = {
+        id: "",
+        total_price: "",
+        address_id: "",
+        updated_at: "",
+    };
+    var url = window.location.hash; //获取url中"?"符后的字串，只用来控制显示
+    var strs;
+    if (url.indexOf("?") != -1) { //链接中有值
+        var str = url.substr(1);
+        strs = str.split("?");
+    }
+
+    if (strs[1].split("=")[0] == "id") { //检查是否是
+        //        getData(strs[0].split("=")[1]);
+        for (var i = 0; i < Orders.orders.length; i++) {
+            if (Orders.orders[i].id === parseInt(strs[1].split("=")[1])) {
+                $scope.order = Orders.orders[i];
+            }
+        }
+    }
+    
+    $scope.songda = function () {
+        var info = {
+            "courierId": $rootScope.courierId,
+            "orderId": $scope.chat.id
+        };
+        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/waybills/fightWaybill.json').then(function (resp) {
+            var tmpinfo = resp;
+
         });
         alert("抢单成功");
     }
@@ -249,18 +285,19 @@ angular.module('starter.controllers', [])
         window.location = url;
     };
 })
-    
-.controller('OrderMgt', function ($scope, $rootScope, httpServicePost) {
+
+.controller('OrderMgt', function ($scope, $rootScope, httpServicePost, Orders) {
     //    $scope.jump = function(url) {
     //            window.location = url;
     //    };
     var info = {
-            "courierId": $rootScope.courierId,
-        };
-        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/waybills/fightWaybill.json').then(function (resp) {
-            var tmpinfo = resp;
-            $scope.orders = resp.data.data;
-        });
+        "courierId": $rootScope.courierId,
+    };
+    var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/orders/getOrderByCourier.json').then(function (resp) {
+        var tmpinfo = resp;
+        $scope.orders = resp.data.data;
+        Orders.orders = resp.data.data;
+    });
     $scope.settings = {
         enableFriends: true
     };

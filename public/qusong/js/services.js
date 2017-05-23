@@ -23,6 +23,29 @@ angular.module('starter.services', [])
             }
         };
     })
+    .factory('Orders', function () {
+        // Might use a resource here that returns a JSON array
+
+        // Some fake testing data
+        var orders = [];
+
+        return {
+            all: function () {
+                return orders;
+            },
+            remove: function (chat) {
+                orders.splice(orders.indexOf(chat), 1);
+            },
+            get: function (chatId) {
+                for (var i = 0; i < orders.length; i++) {
+                    if (orders[i].id === parseInt(chatId)) {
+                        return orders[i];
+                    }
+                }
+                return null;
+            }
+        };
+    })
     .factory('Login', function () {
         // Might use a resource here that returns a JSON array
         return {
