@@ -250,10 +250,17 @@ angular.module('starter.controllers', [])
     };
 })
     
-.controller('OrderMgt', function ($scope) {
+.controller('OrderMgt', function ($scope, $rootScope, httpServicePost) {
     //    $scope.jump = function(url) {
     //            window.location = url;
     //    };
+    var info = {
+            "courierId": $rootScope.courierId,
+        };
+        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/waybills/fightWaybill.json').then(function (resp) {
+            var tmpinfo = resp;
+            $scope.orders = resp.data.data;
+        });
     $scope.settings = {
         enableFriends: true
     };

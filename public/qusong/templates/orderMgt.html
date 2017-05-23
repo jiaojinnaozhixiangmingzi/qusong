@@ -1,11 +1,15 @@
-<ion-view view-title="我的订单">
+<ion-view view-title="已抢订单管理" hide-nav-bar="true">
+    <div class="bar bar-header">
+        <button class="button button-small button-icon icon ion-chevron-left" ng-click="$ionicGoBack()"></button>
+        <div class="h1 title">已抢订单管理</div>
+    </div>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-icon-right" ng-repeat="chat in chatss" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="order in orders" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="">
-        <h2>总价格{{chat.total_price}}</h2>
-        <p>下单时间{{chat.updated_at}}</p>
-        <p style="position: absolute;right: 40px;top: 37%;">{{chat.status}}</p>
+        <h2>总价格{{order.total_price}}</h2>
+        <p>下单时间{{order.updated_at}}</p>
+        <p style="position: absolute;right: 40px;top: 37%;">{{order.status}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-assertive" ng-click="remove(chat)">
