@@ -238,7 +238,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('OrderDetailCtrl', function ($scope, $stateParams, Orders, httpServicePost, $rootScope) {
+.controller('OrderDetailCtrl', function ($scope, $stateParams, Orders, httpServicePost, $rootScope, $ionicHistory) {
     $scope.order = {
         id: "",
         total_price: "",
@@ -263,14 +263,17 @@ angular.module('starter.controllers', [])
     
     $scope.songda = function () {
         var info = {
-            "courierId": $rootScope.courierId,
-            "orderId": $scope.chat.id
+            "orderId": $scope.order.id
         };
-        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/waybills/fightWaybill.json').then(function (resp) {
+        var serviceRet = httpServicePost.posthttp(info, 'http://localhost:3001/orders/sendToFactory.json').then(function (resp) {
             var tmpinfo = resp;
+            if (resp.data.data == "Succ") {
+                alert("该订单已标记为‘已送达’");
+                $ionicHistory.clearCache(["orderMgt"]);
 
+                window.location = "#/tab/account";
+            }
         });
-        alert("抢单成功");
     }
 })
 

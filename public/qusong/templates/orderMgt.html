@@ -15,7 +15,7 @@
                 <img ng-src="">
                 <h2>总价格{{order.total_price}}</h2>
                 <p>下单时间{{order.created_at}}</p>
-                <p style="position: absolute;right: 40px;top: 37%;">{{courier_status.status}}</p>
+                <p style="position: absolute;right: 40px;top: 37%;">{{order.courier_status}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
 
                 <ion-option-button class="button-assertive" ng-click="remove(chat)">
